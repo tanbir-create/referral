@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Referral - Daily prayer | Guruji Astro</title>
+    <link rel="preload" href="./css/style.css" as="style">
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background-color: rgb(0, 0, 0);
+      position: relative;
+    "
+  >
+    <div id="header" class="border-bottom">
+      <div id="back-btn">
+        <img src="./images/back-btn-black.png" alt="" />
+      </div>
+
+      <div class="h2-header">
+        <h2>Daily Prayer</h2>
+      </div>
+      <div id="share-btn">
+        <img src="./images/share-btn-black.png" alt="" />
+      </div>
+    </div>
+    <div class="video-container">
+      <video src="./images/1080p.mp4" class="video" preload="metadata"></video>
+
+      <div class="loader show-loader"></div>
+      <div class="video-controls">
+        <div class="play-pause">
+          <div class="play-button">
+            <div class="arrow arrow-left"></div>
+            <div class="arrow arrow-right"></div>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+
+        <div id="time-remaining"></div>
+      </div>
+      <p id="video-p">After watching the video, you can get 10 star coins</p>
+
+      <div class="received-overlay">
+        <div class="popup-dialog">
+          <div class="popup-thumb">
+            <img src="./images/light-popup.png" alt="" style="max-width: 37%;" />
+          </div>
+          <p>CONGRATULATIONS</p>
+          <p id="coins-received"><span>+300</span> coins</p>
+          <button id="continue-btn">Continue</button>
+        </div>
+        <div id="close-popup">
+          <img src="images/icon-close-popup.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <script src="./script/jquery-3.6.0.min.js"></script>
+
+    <script>
+      const backBtn = document.getElementById("back-btn");
+      backBtn.onclick = function () {
+        history.back();
+      };
+      
+      const offH = document.querySelector('.border-bottom').offsetHeight;
+      document.querySelector('.video-container').style.height = Number(window.innerHeight-offH) + 'px';
+
+      let video = document.querySelector(".video");
+      let btn = $(".play-pause");
+      const receivedOverlay = document.querySelector(".received-overlay");
+
+
+      if (video) {
+        $(".play-pause").click(function () {
+          setTimeout(() => {
+            $("#video-p").fadeOut();
+          }, 4000);
+          if (video.paused) {
+            $(".play-button").addClass("active");
+            video.play();
+          } else {
+            $(".play-button").removeClass("active");
+
+            video.pause();
+          }
+        });
+
+        $("#video-container").click(function () {});
+
+        video.addEventListener("timeupdate", function () {
+          let progress = video.currentTime / video.duration;
+          $(".progress").css("width", `${progress * 100 + "%"}`);
+          let distance = video.duration - video.currentTime;
+
+          let { mins, sec } = getTimeLeft(distance);
+
+          $("#time-remaining").text(mins + ":" + sec);
+
+          if (video.ended) {
+            $(".play-button").toggleClass("active");
+
+            const day = new Date().getDay();
+            const localStorageKey = "video-watched-" + day;
+            if (!localStorage.getItem(localStorageKey)) {
+              receivedOverlay.classList.add("overlay-pop-up");
+              localStorage.setItem(localStorageKey, "true");
+            }
+
+            let { mins, sec } = getTimeLeft(video.duration);
+            $("#time-remaining").text(mins + ":" + sec);
+          }
+        });
+
+        $(".progress-bar").click(function (e) {
+          var rt = $(".progress-bar").outerWidth();
+
+          var xPos = e.pageX - $(this).offset().left;
+          $(".progress").css("width", xPos);
+
+          video.currentTime = xPos * (video.duration / rt);
+        });
+
+        video.addEventListener("loadedmetadata", function () {
+          let controlsOffset = (window.innerHeight-offH - video.offsetHeight) / 2;
+          
+          controlsOffset = controlsOffset < 0 ? 15 : controlsOffset;
+
+          $('.video-controls').css({"bottom":  `${controlsOffset + 15}px`, "display" : "flex"})
+
+          $('#video-p').css({"bottom":  `${controlsOffset + 45}px`})
+          
+          setTimeout(() => {
+            $("#video-p").fadeOut();
+          }, 4000);
+
+          let { mins, sec } = getTimeLeft(video.duration);
+          $("#time-remaining").text(mins + ":" + sec);
+        });
+
+        function getTimeLeft(distance) {
+          let mins = Math.floor((distance % (60 * 60)) / 60);
+          let seconds = Math.floor(distance % 60);
+          let sec = seconds < 10 ? "0" + seconds : seconds;
+
+          const obj = {
+            mins,
+            sec,
+          };
+          return obj;
+        }
+      }
+
+      video.addEventListener("waiting", () => {
+        $(".loader").removeClass("show-loader");
+      });
+      video.addEventListener("playing", () => {
+        $(".loader").addClass("show-loader");
+      });
+
+      receivedOverlay.onclick = function (e) {
+        if (e.target.id == "continue-btn") {
+          receivedOverlay.classList.remove("overlay-pop-up");
+          video.play();
+          $(".play-button").addClass("active");
+
+          return;
+        }
+
+        if (
+          e.target.classList.contains("popup-dialog") ||
+          e.target.parentElement.classList.contains("popup-dialog") ||
+          e.target.parentElement.parentElement.classList.contains(
+            "popup-dialog"
+          )
+        )
+          return;
+
+        receivedOverlay.classList.remove("overlay-pop-up");
+        video.play();
+        $(".play-button").addClass("active");
+      };
+   
+
+
+    </script>
+  </body>
+</html>

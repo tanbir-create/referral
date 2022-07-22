@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Referral | Guruji Astro</title>
+    <link rel="preload" href="./css/style.css" as="style">
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+   
+    <div class="home-wrapper">
+        <div id="header">
+          <div id="back-btn">
+           <img src="./images/back-btn.png" alt="">
+          </div>
+
+          <div>
+            <h2>Home</h2>
+          </div>
+
+          <div id="share-btn">
+           <img src="./images/share-btn.png" alt="">
+          </div>
+        </div>
+
+      <div id="home-top">
+        
+        <div id="home-header-bg">
+          <img src="./images/home-bg.png" alt="" />
+        </div>
+        
+        <div class="reward-amount">
+          <p>Reward amount</p>
+          <div>
+            <div class="reward-details">
+              <div class="reward-detail">
+                <p>₹3000</p>
+                <img src="images/back-btn.png" alt="">
+              </div>
+              <p>Reach ₹1000 be withdrawn</p>
+            </div>
+            <a href="./star-coins.html" class="reward-details">
+                <div class="reward-detail">
+                <p>20</p>
+                <img src="images/back-btn.png" alt="">
+                </div>
+                <p>Star coins</p>
+            </a>
+            <a href="./invite-list.html" class="reward-details">
+                <div class="reward-detail">
+                    <p>120</p>
+                    <img src="images/back-btn.png" alt="">
+                    </div>
+                        <p>Invite list</p>
+                    </div>
+                 </div>
+            </a>
+         </div>
+
+ 
+        <div class="home-bottom">
+            <div id="daily-prayer-section">
+              <p>Daily Pray</p>
+              <p>Daily prayer to receive star coins, 100stars=₹1</p>
+              <div class="star-coins">
+                <div  data-day="1">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div  data-day="2">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div  data-day="3">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div  data-day="4">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div data-day="5">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div data-day="6">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+                <div data-day="7">
+                  <img src="./images/light.png" alt="" />
+                  <p>+10</p>
+                </div>
+              </div>
+            </div>
+            <div class="post-library-btns">
+                <a href="./share-strategy.html" id="share-strategy">
+                    <div><img src="./images/icon-gems.png" alt=""></div>
+                    <p>Share strategy</p>
+                </a>
+                <a href="./post-library.html" id="post-library">
+                    <div><img src="./images/Icon-gift.png" alt=""></div>
+                    <p>Post Library</p>
+                </a>
+            </div>
+            <div class="reward">
+                <div class="reward-icon">
+                    <img src="./images/icon-daily-share.png" alt="">
+                </div>
+                <div class="share-details">
+                    <p>Daily Share Post</p>
+                    <p>Go to share the template to reach the withdrawal limit faster</p>
+                </div>
+                <a href="./post-library.html">
+                    Share
+                </a>
+            </div>
+            <div class="reward">
+                <div class="reward-icon">
+                    <img src="./images/light.png" alt="">
+                </div>
+                <div class="share-details">
+                    <p>Friends recharge successfully</p>
+                    <p>Friend recharge success you get <span style="color: #FF5900;">+300</span></p>
+                </div>
+                <button id="received">
+                    Receive
+                </button>
+            </div>
+            <div class="reward">
+                <div class="reward-icon">
+                    <img src="./images/icon-today-template.png" alt="">
+                </div>
+                <div class="share-details">
+                    <p>Manu Today Template</p>
+                    <p>Go to share the template to reach the withdrawal limit faster</p>
+                </div>
+                <a href="./post-library.html">
+                    Share
+                </a>
+            </div>          
+        
+      </div>
+      
+    </div>
+
+    <div class="bottom-nav">
+        <a href="./index.html" class="active">
+            <div>
+                <img src="./images/icon-home-active.png" alt="">
+            </div>
+            <p>Home</p>
+        </a>
+        <a href="./leaderboard.html">
+            <div>
+                <img src="./images/icon-leaderboard.png" alt="">
+            </div>
+            <p>Leaderboard</p>
+        </a>
+    </div>
+
+    <!--  -->
+    <div class="received-overlay">
+       
+        <div class="popup-dialog">
+             <div class="popup-thumb">
+                <img src="./images/popup-thumb.png" alt="">
+             </div>
+            <p>EXCHANGE SUCCESSFULLY</p>
+            <p id="coins-received"><span>+300</span> coins</p>
+            <button id="continue-btn">Continue</button>
+        </div>
+        <div id="close-popup">
+            <img src="images/icon-close-popup.png" alt="">
+        </div>
+    </div>
+
+     <div class="tomorrow-popup">
+      <p>Don't be greedy, today's prayer has been completed, try again tomorrow</p>
+      <p><strong>Got it</strong></p>
+     </div>
+
+    <script src="./script/script.js"></script>
+  </body>
+</html>
