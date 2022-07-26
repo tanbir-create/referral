@@ -18,8 +18,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 user-select:none;
+-webkit-tap-highlight-color: transparent;
 }
-div, a { user-select:none;}
+div, a, p{ user-select:none;-webkit-tap-highlight-color: transparent; }
 
 a {
   color: #222222;
