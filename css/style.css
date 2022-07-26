@@ -19,6 +19,7 @@ body {
   box-sizing: border-box;
 user-select:none;
 }
+div, a { user-select:none;}
 
 a {
   color: #222222;
